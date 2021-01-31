@@ -1,0 +1,55 @@
+{% extends 'base_layout.html' %} {% block body %}
+
+<style>
+    .urlToImage {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .text {
+        display: block;
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+</style>
+
+<div class="container">
+    <br>
+    <section class="mt-5 wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
+        <div class="jumbotron text-center">
+            <h1 class="mt-5 wow fadeIn text-center"> Search </h1>
+            <form>
+                <input type="text" class="form-control" name="news" placeholder="Search news"> <br>
+                <input type="submit" class="btn btn-success text-center" value="Search">
+            </form>
+        </div>
+    </section>
+    <hr class="my-5"> {% for news in news %}
+    <section class="mt-5 wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
+        <div class="jumbotron">
+
+            <h1 class="text-center">{{news.title}} </h1>
+            <h3>{{news.description}} </h3>
+            <br>
+            <div><img src="{{news.urlToImage}}" class="urlToImage"></div>
+            <br>
+            <p class="text">{{news.content}} </p>
+            <a href="{{news.url}}" target="_blank" class="btn btn-success btn-sm">Read more</a>
+        </div>
+    </section>
+    <hr class="my-5"> {% endfor %}
+
+
+</div>
+
+<script>
+    $('input[type=submit]').click(function() {
+        var url = $('http://newsapi.org/v2/everything?q={{Submit}}&language=en&sortBy=publishedAt&apiKey=0f123f4c5b4f45a6b33d7ca370bbaf05').text();
+        $(location).attr('href', url)
+    });
+</script>
+
+
+{% endblock %}

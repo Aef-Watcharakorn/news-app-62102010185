@@ -1,0 +1,100 @@
+{% extends 'base_layout.html' %} {% block body %}
+<style>
+    .urlToImage {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .text {
+        display: block;
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+</style>
+<div class="container">
+    <br>
+    <section class="mt-5 wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
+        <div class="jumbotron text-center">
+
+            <h1>Welcome to My Web Application</h1>
+            <h1>Current Weather</h1>
+
+            <form>
+                <input type="text" class="form-control" name="city" placeholder="weather search">
+                <br>
+                <input type="submit" class="btn btn-success" value="Submit">
+            </form>
+
+            <br><br>
+            <div class="card">
+                <p>City: <b>{{weather.city}}, {{weather.country}}</b></p>
+                <p>{{weather.description}} |{{weather.temperature}}&#8451</p>
+                <p> windSpeed = {{weather.wind}} km/hr</p>
+                <p> Pressure = {{weather.pressure}} hpa</p>
+                <p> Humidity = {{weather.humidity}}% </p>
+                <div id="icon"><img src="http://openweathermap.org/img/wn/{{weather.icon}}@2x.png" alt="Weather icon">
+                </div>
+            </div>
+        </div>
+    </section>
+    <hr class="my-5">
+    <section class="mt-5 wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
+        <div class="jumbotron">
+            <h1 class="text-center"> {{covid19.title[0]}} </h1>
+            <h3> {{covid19.description[0]}} </h3>
+            <div><img src="{{covid19.urlToImage[0]}}" class="urlToImage"></div>
+            <p class="text"> Content: {{covid19.content[0]}} </p>
+            <a href="{{covid19.url[0]}}" target="_blank" class="btn btn-success btn-sm">Read more</a>
+        </div>
+        <hr class="my-5">
+        <div class="jumbotron">
+            <h1 class="text-center"> {{covid19.title[1]}} </h1>
+            <h3> {{covid19.description[1]}} </h3>
+            <div><img src="{{covid19.urlToImage[1]}}" class="urlToImage"></div>
+            <p class="text"> Content: {{covid19.content[1]}} </p>
+            <a href="{{covid19.url[1]}}" target="_blank" class="btn btn-success btn-sm">Read more</a>
+        </div>
+    </section>
+    <hr class="my-5">
+    <section class="mt-5 wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
+        <div class="jumbotron">
+            <h1 class="text-center"> {{covid19.title[2]}} </h1>
+            <h3> {{covid19.description[2]}} </h3>
+            <div><img src="{{covid19.urlToImage[2]}}" class="urlToImage"></div>
+            <p class="text">{{covid19.content[2]}} </p>
+            <a href="{{covid19.url[2]}}" target="_blank" class="btn btn-success btn-sm">Read more</a>
+        </div>
+        <hr class="my-5">
+        <div class="jumbotron">
+            <h1 class="text-center"> {{covid19.title[3]}} </h1>
+            <h3> {{covid19.description[3]}} </h3>
+            <div><img src="{{covid19.urlToImage[3]}}" class="urlToImage"></div>
+            <br>
+            <p class="text"> {{covid19.content[3]}} </p>
+            <a href="{{covid19.url[3]}}" target="_blank" class="btn btn-success btn-sm">Read more</a>
+        </div>
+    </section>
+    <hr class="my-5">
+    <section class="mt-5 wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
+        <div class="jumbotron">
+            <h1 class="text-center"> {{covid19.title[4]}} </h1>
+            <h3> {{covid19.description[4]}} </h3>
+            <div><img src="{{covid19.urlToImage[4]}}" class="urlToImage"></div>
+            <br>
+            <p class="text"> {{covid19.content[4]}} </p>
+            <a href="{{covid19.url[4]}}" target="_blank" class="btn btn-success btn-sm">Read more</a>
+        </div>
+    </section>
+    <hr class="my-5">
+</div>
+<script>
+    $('input[type=submit]').click(function() {
+        var url = $('http://api.openweathermap.org/data/2.5/weather?q={{Submit}}&units=metric&APPID=456c1a3c436150042b033dd0e6261e4a').text();
+        $(location).attr('href', url)
+    });
+</script>
+
+
+{% endblock %}
